@@ -24,7 +24,7 @@ class UserLogin(Resource):
 @api.route('/logout')
 class LogoutAPI(Resource):
     """
-    Logout Resource
+        Logout Resource
     """
     @api.doc('logout a user')
     def post(self):
