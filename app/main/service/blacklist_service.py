@@ -1,6 +1,6 @@
 from app.main import db
 
-from app.main.model.blacklist import BlacklistToken
+from app.main.model.models import BlacklistToken
 
 
 def save_token(token):

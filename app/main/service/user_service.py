@@ -2,7 +2,7 @@ import uuid
 import datetime
 
 from app.main import db
-from app.main.model.user import User
+from app.main.model.models import User, save_changes
 
 
 def save_new_user(data):
@@ -49,9 +49,3 @@ def generate_token(user):
             'message': 'Some error occurred. Please try again.'
         }
         return response_object, 401
-
-
-def save_changes(data):
-    db.session.add(data)
-    db.session.commit()
-

@@ -17,3 +17,19 @@ class AuthDto:
         'email': fields.String(required=True, description='The email address'),
         'password': fields.String(required=True, description='The user password '),
     })
+
+
+class ImageDto:
+    api = Namespace('post', description='post related operations')
+    image = api.model('image', {
+        'path': fields.String(required=True, description='path for image')
+    })
+
+
+class PostDto:
+    api = Namespace('post', description='post related operations')
+    post = api.model('post', {
+        'text': fields.String(description='text for post'),
+        'images': fields.List(fields.Nested(ImageDto.image)),
+        'public_id': fields.String(required=True, description='public id of post')
+    })

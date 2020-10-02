@@ -12,11 +12,14 @@ class Config:
 
 
 class DevelopmentConfig(Config):
-    # uncomment the line below to use postgres
-    # SQLALCHEMY_DATABASE_URI = postgres_local_base
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask_boilerplate_main.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    S3_BUCKET = os.environ.get("S3_BUCKET_NAME")
+    S3_KEY = os.environ.get("S3_INSTAPIC_ACCESS_KEY")
+    S3_SECRET = os.environ.get("S3_INSTAPIC_SECRET_ACCESS_KEY")
+    S3_LOCATION = 'http://{}.s3.amazonaws.com/'.format(S3_BUCKET)
+    SECRET_KEY = os.urandom(32)
 
 
 class TestingConfig(Config):
@@ -25,12 +28,20 @@ class TestingConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask_boilerplate_test.db')
     PRESERVE_CONTEXT_ON_EXCEPTION = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    S3_BUCKET = os.environ.get("S3_BUCKET_NAME")
+    S3_KEY = os.environ.get("S3_INSTAPIC_ACCESS_KEY")
+    S3_SECRET = os.environ.get("S3_INSTAPIC_SECRET_ACCESS_KEY")
+    S3_LOCATION = 'http://{}.s3.amazonaws.com/'.format(S3_BUCKET)
+    SECRET_KEY = os.urandom(32)
 
 
 class ProductionConfig(Config):
     DEBUG = False
-    # uncomment the line below to use postgres
-    # SQLALCHEMY_DATABASE_URI = postgres_local_base
+    S3_BUCKET = os.environ.get("S3_BUCKET_NAME")
+    S3_KEY = os.environ.get("S3_INSTAPIC_ACCESS_KEY")
+    S3_SECRET = os.environ.get("S3_INSTAPIC_SECRET_ACCESS_KEY")
+    S3_LOCATION = 'http://{}.s3.amazonaws.com/'.format(S3_BUCKET)
+    SECRET_KEY = os.urandom(32)
 
 
 config_by_name = dict(
