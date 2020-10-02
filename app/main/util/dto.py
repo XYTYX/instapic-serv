@@ -19,17 +19,13 @@ class AuthDto:
     })
 
 
-class ImageDto:
+class PostDto:
     api = Namespace('post', description='post related operations')
     image = api.model('image', {
         'path': fields.String(required=True, description='path for image')
     })
-
-
-class PostDto:
-    api = Namespace('post', description='post related operations')
     post = api.model('post', {
         'text': fields.String(description='text for post'),
-        'images': fields.List(fields.Nested(ImageDto.image)),
+        'images': fields.List(fields.Nested(image)),
         'public_id': fields.String(required=True, description='public id of post')
     })
