@@ -28,7 +28,7 @@ class UserList(Resource):
 
 
 @api.route('/<public_id>')
-@api.param('public_id', 'The User identifier')
+@api.param('public_id', 'The user identifier')
 @api.response(404, 'User not found.')
 class User(Resource):
     @api.doc('get a user')

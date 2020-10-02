@@ -16,7 +16,6 @@ class NewPost(Resource):
     @api.marshal_list_with(_post)
     def post(self):
         user, status = Auth.get_logged_in_user(request)
-        data = request.json
         return new_post(user_id=user['data']['user_id'], request=request)
 
     @api.doc('gets all posts')
@@ -26,9 +25,16 @@ class NewPost(Resource):
         return get_all_posts();
 
 
-
-#@api.route('/<public_id>')
-#class ViewPost(Resource):
-    #@api.doc('views a single post')
-    #@token_required
-    #@api.marshal_with(_post)
+@api.route('/<public_id>')
+@api.param('public_id', 'The post identifier')
+@api.response(404, 'User not found.')
+class Post(Resource):
+    @api.doc('views a single post')
+    @token_required
+    @api.marshal_with(_post)
+    def get(self):
+        post = get_post(public_id)
+        if not user:
+            api.abort(404)
+        else:
+            return user

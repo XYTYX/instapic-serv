@@ -46,6 +46,9 @@ def new_post(user_id, request):
 
         return new_post
 
+def get_post(public_id):
+    return Post.query.filter_by(public_id=public_id).first()
+
 
 def allowed_file(filename):
     return '.' in filename and \
