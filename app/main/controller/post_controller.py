@@ -13,13 +13,14 @@ _post = PostDto.post
 class NewPost(Resource):
     @api.doc('creates a new post')
     @token_required
+    @api.marshal_list_with(_post)
     def post(self):
         user, status = Auth.get_logged_in_user(request)
         data = request.json
         return new_post(user_id=user['data']['user_id'], request=request)
 
     @api.doc('gets all posts')
-    @admin_token_required
+    @token_required
     @api.marshal_list_with(_post, envelope='posts')
     def get(self):
         return get_all_posts();
