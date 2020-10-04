@@ -54,5 +54,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-def get_all_posts():
-    return Post.query.all()
+def get_all_posts(sort_by):
+    if (sort_by == 'most_recent'):
+        return Post.query.order_by(Post.id.desc()).all()
+        

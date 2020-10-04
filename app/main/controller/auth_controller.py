@@ -1,5 +1,6 @@
 from flask import request
 from flask_restx import Resource
+from flask_cors import cross_origin
 
 from app.main.service.auth_helper import Auth
 from ..util.dto import AuthDto
