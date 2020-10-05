@@ -5,7 +5,7 @@ import jwt
 
 class User(db.Model):
     """ User Model for storing user related details """
-    __tablename__ = "user"
+    __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(255), unique=True, nullable=False)
@@ -72,7 +72,7 @@ class User(db.Model):
 
 class Post(db.Model):
     """ Model for representing posts """
-    __tablename__ = "post"
+    __tablename__ = "posts"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -84,7 +84,7 @@ class Post(db.Model):
 
 class Image(db.Model):
     """ Model for representing images in posts """
-    __tablename__ = "image"
+    __tablename__ = "images"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
