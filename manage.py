@@ -14,7 +14,7 @@ app.app_context().push()
 
 manager = Manager(app)
 
-migrate = Migrate(app, db, render_as_batch=True)
+migrate = Migrate(app, db, render_as_batch=True, compare_type=True)
 
 manager.add_command('db', MigrateCommand)
 
