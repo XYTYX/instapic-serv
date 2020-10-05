@@ -1,5 +1,14 @@
-from manage import app
+from flask import make_response
+from flask_restx import Resource, Namespace
 
-@app.route("/health")
-def health():
-    return 200
+api = Namespace("/health", description="health check")
+
+@api.route("/")
+class HealthCheck(Resource):
+    def get(self):
+        headers = {"Content-Type": "application/json"}
+        return make_response(
+            'OK',
+            200,
+            headers
+        )
