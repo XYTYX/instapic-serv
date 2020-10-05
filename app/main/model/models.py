@@ -74,6 +74,7 @@ class Post(db.Model):
     """ Model for representing posts """
     __tablename__ = "posts"
 
+    #
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     created_on = db.Column(db.DateTime, nullable=False)
