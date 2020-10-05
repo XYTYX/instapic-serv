@@ -16,8 +16,8 @@ class DevelopmentConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask_boilerplate_main.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     S3_BUCKET = os.environ.get("S3_BUCKET_NAME")
-    S3_KEY = os.environ.get("S3_INSTAPIC_ACCESS_KEY")
-    S3_SECRET = os.environ.get("S3_INSTAPIC_SECRET_ACCESS_KEY")
+    AWS_KEY = os.environ.get("AWS_INSTAPIC_ACCESS_KEY")
+    AWS_SECRET = os.environ.get("AWS_INSTAPIC_SECRET_ACCESS_KEY")
     S3_LOCATION = 'http://{}.s3.amazonaws.com/'.format(S3_BUCKET)
     SECRET_KEY = os.urandom(32)
 
@@ -29,8 +29,8 @@ class TestingConfig(Config):
     PRESERVE_CONTEXT_ON_EXCEPTION = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     S3_BUCKET = os.environ.get("S3_BUCKET_NAME")
-    S3_KEY = os.environ.get("S3_INSTAPIC_ACCESS_KEY")
-    S3_SECRET = os.environ.get("S3_INSTAPIC_SECRET_ACCESS_KEY")
+    AWS_KEY = os.environ.get("AWS_INSTAPIC_ACCESS_KEY")
+    AWS_SECRET = os.environ.get("AWS_INSTAPIC_SECRET_ACCESS_KEY")
     S3_LOCATION = 'http://{}.s3.amazonaws.com/'.format(S3_BUCKET)
     SECRET_KEY = os.urandom(32)
 
@@ -38,8 +38,8 @@ class TestingConfig(Config):
 class ProductionConfig(Config):
     DEBUG = False
     S3_BUCKET = os.environ.get("S3_BUCKET_NAME")
-    S3_KEY = os.environ.get("S3_INSTAPIC_ACCESS_KEY")
-    S3_SECRET = os.environ.get("S3_INSTAPIC_SECRET_ACCESS_KEY")
+    AWS_KEY = os.environ.get("AWS_INSTAPIC_ACCESS_KEY")
+    AWS_SECRET = os.environ.get("AWS_INSTAPIC_SECRET_ACCESS_KEY")
     S3_LOCATION = 'http://{}.s3.amazonaws.com/'.format(S3_BUCKET)
     SECRET_KEY = os.urandom(32)
 
