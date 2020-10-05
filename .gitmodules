@@ -1,0 +1,3 @@
+[submodule "instapic"]
+	path = instapic
+	url = https://github.com/XYTYX/instapic
