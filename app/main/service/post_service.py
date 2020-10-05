@@ -2,7 +2,6 @@ import uuid
 import os
 import datetime
 from flask import current_app
-from app.main import ALLOWED_EXTENSIONS
 from app.main.model.models import save_changes, Post, Image
 
 def new_post(user_id, request):
@@ -58,3 +57,4 @@ def get_all_posts(sort_by):
     if (sort_by == 'most_recent'):
         return Post.query.order_by(Post.id.desc()).all()
         
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
