@@ -11,7 +11,6 @@ flask_bcrypt = Bcrypt()
 
 def create_app():
     app = Flask(__name__, static_folder='../../instapic/build', static_url_path='/')
-    # app = Flask(__name__)
 
     config_name = os.getenv('ENV') or 'dev'
     app.config.from_object(config_by_name[config_name])
