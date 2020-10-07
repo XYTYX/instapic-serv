@@ -1,6 +1,7 @@
 import os
 import unittest
 
+from flask import render_template
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 
