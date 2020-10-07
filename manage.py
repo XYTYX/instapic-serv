@@ -9,9 +9,8 @@ from app import blueprint
 from app.main import create_app, db
 
 app = create_app()
-app.register_blueprint(blueprint)
-
 app.app_context().push()
+app.register_blueprint(blueprint)
 
 manager = Manager(app)
 
@@ -21,7 +20,7 @@ manager.add_command('db', MigrateCommand)
 
 @app.route('/')
 def index():
-    return app.send_static_file('index.html')
+    return app.send_static_file('index.html') 
 
 @manager.command
 def test():
