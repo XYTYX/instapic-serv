@@ -30,3 +30,6 @@ class PostDto:
         'public_id': fields.String(required=True, description='public id of post'),
         'created_on': fields.String(required=True, description='date post was created')
     })
+
+class StaticHtml:
+    api = Namespace('/asdf', description='endpoint to serve static html')
