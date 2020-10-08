@@ -3,6 +3,7 @@ import os
 import datetime
 from flask import current_app
 from app.main.model.models import save_changes, Post, Image
+from .upload_helper import upload_file_to_s3
 
 def new_post(user_id, request):
     if 'file' not in request.files:
@@ -42,6 +43,8 @@ def new_post(user_id, request):
         )
 
         save_changes(new_image)
+
+        upload_file_to_s3(file, filename)        
 
         return new_post
 

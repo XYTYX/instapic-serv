@@ -5,11 +5,12 @@ from flask import render_template
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 
-from app import blueprint
 from app.main import create_app, db
+from app import blueprint
 
 app = create_app()
 app.app_context().push()
+
 app.register_blueprint(blueprint)
 
 manager = Manager(app)
