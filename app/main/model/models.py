@@ -90,7 +90,8 @@ class Image(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
     created_on = db.Column(db.DateTime, nullable=False)
-    path = db.Column(db.String(255), unique=True, nullable=False)
+    filename = db.Column(db.String(255), unique=True, nullable=False)
+    full_src = db.Column(db.String(255), unique=True, nullable=False)
 
 
 class BlacklistToken(db.Model):

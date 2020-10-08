@@ -36,16 +36,16 @@ def new_post(user_id, request):
 
         post_id = save_changes(new_post).id
 
+        full_src = upload_file_to_s3(file, filename)
+
         new_image = Image(
             post_id=post_id,
             created_on=datetime.datetime.utcnow(),
-            path=filename
+            filename=filename,
+            full_src=full_src
         )
 
         save_changes(new_image)
-
-        upload_file_to_s3(file, filename)        
-
         return new_post
 
 def get_post(public_id):
