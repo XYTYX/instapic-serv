@@ -19,4 +19,8 @@ def create_app():
 
     CORS(app)
 
+    @app.route('/<path>')
+    def index(path):
+        return app.send_static_file('index.html') 
+
     return app
