@@ -19,8 +19,8 @@ migrate = Migrate(app, db, render_as_batch=True, compare_type=True)
 
 manager.add_command('db', MigrateCommand)
 
-@app.route('/')
-def index():
+@app.route('/<path>')
+def index(path):
     return app.send_static_file('index.html') 
 
 @manager.command
