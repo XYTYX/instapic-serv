@@ -59,5 +59,7 @@ def allowed_file(filename):
 def get_all_posts(sort_by):
     if (sort_by == 'most_recent'):
         return Post.query.order_by(Post.id.desc()).all()
+    elif (sort_by == 'by_user'):
+        return Post.query.order_by(Post.user_id.desc()).all()
         
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
