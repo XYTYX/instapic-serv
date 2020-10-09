@@ -23,7 +23,7 @@ def new_post(user_id, request):
         return response_object, 400
 
     if file and allowed_file(file.filename):
-        filename = str(uuid.uuid4())
+        unique_filename = str(uuid.uuid4())
 
         form = request.form
 
@@ -36,12 +36,12 @@ def new_post(user_id, request):
 
         post_id = save_changes(new_post).id
 
-        full_src = upload_file_to_s3(file, filename)
+        full_src = upload_file_to_s3(file, unique_filename)
 
         new_image = Image(
             post_id=post_id,
             created_on=datetime.datetime.utcnow(),
-            filename=filename,
+            filename=unique_filename,
             full_src=full_src
         )
 
@@ -56,10 +56,10 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
 def get_all_posts(sort_by):
-    if (sort_by == 'most_recent'):
-        return Post.query.order_by(Post.id.desc()).all()
-    elif (sort_by == 'by_user'):
+    if (sort_by == 'by_user'):
         return Post.query.order_by(Post.user_id.desc()).all()
-        
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+    else:
+        return Post.query.order_by(Post.id.desc()).all()

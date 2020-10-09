@@ -26,4 +26,4 @@ def upload_file_to_s3(file, filename, acl="public-read"):
         print("Something Happened: ", e)
         return e
 
-    return "{}{}".format(current_app.config["S3_LOCATION"], file.filename)
+    return "{}{}".format(current_app.config["S3_LOCATION"], filename)

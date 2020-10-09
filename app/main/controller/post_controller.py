@@ -24,13 +24,14 @@ class NewPost(Resource):
     def get(self):
         sort_by = request.args.get('sort_by')
         posts = get_all_posts(sort_by);
+        print(posts[0].images[0].full_src)
         return posts
 
 
 @api.route('/<public_id>')
 @api.param('public_id', 'The post identifier')
 class Post(Resource):
-    @api.doc('views a single post')
+    @api.doc('gets a single post')
     @token_required
     @api.marshal_with(_post)
     def get(self, public_id):

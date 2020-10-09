@@ -7,7 +7,7 @@ class UserDto:
         'email': fields.String(required=True, description='user email address'),
         'username': fields.String(required=True, description='user username'),
         'password': fields.String(required=True, description='user password'),
-        'public_id': fields.String(description='user Identifier')
+        'public_id': fields.String(description='user Identifier'),
     })
 
 
@@ -22,7 +22,7 @@ class AuthDto:
 class PostDto:
     api = Namespace('v1/post', description='post related operations')
     image = api.model('image', {
-        'path': fields.String(required=True, description='path for image')
+        'full_src': fields.String(required=True, description='full source for image')
     })
     post = api.model('post', {
         'text': fields.String(description='text for post'),
