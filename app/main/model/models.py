@@ -11,7 +11,7 @@ class User(db.Model):
     email = db.Column(db.String(255), unique=True, nullable=False)
     registered_on = db.Column(db.DateTime, nullable=False)
     admin = db.Column(db.Boolean, nullable=False, default=False)
-    public_id = db.Column(db.String(100), unique=True)
+    public_id = db.Column(db.String(100), unique=True, nullable=False)
     username = db.Column(db.String(50), unique=True)
     password_hash = db.Column(db.String(100))
     posts = db.relationship("Post", backref="user", lazy=True)
@@ -76,7 +76,7 @@ class Post(db.Model):
 
     #
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_public_id = db.Column(db.Integer, db.ForeignKey('users.public_id'), nullable=False)
     created_on = db.Column(db.DateTime, nullable=False)
     text = db.Column(db.String(255))
     public_id = db.Column(db.String(100), unique=True)
