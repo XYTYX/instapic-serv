@@ -76,7 +76,7 @@ class Post(db.Model):
 
     #
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_public_id = db.Column(db.Integer, db.ForeignKey('users.public_id'), nullable=False)
+    user_public_id = db.Column(db.String(100), db.ForeignKey('users.public_id'), nullable=False)
     created_on = db.Column(db.DateTime, nullable=False)
     text = db.Column(db.String(255))
     public_id = db.Column(db.String(100), unique=True)
