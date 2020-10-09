@@ -5,7 +5,7 @@ from flask import current_app
 from app.main.model.models import save_changes, Post, Image
 from .upload_helper import upload_file_to_s3
 
-def new_post(user_id, request):
+def new_post(public_id, request):
     if 'file' not in request.files:
         response_object = {
             'status': 'fail',
@@ -28,7 +28,7 @@ def new_post(user_id, request):
         form = request.form
 
         new_post = Post(
-            user_id=user_id,
+            user_public_id=public_id,
             created_on=datetime.datetime.utcnow(),
             text=form['text'],
             public_id=str(uuid.uuid4())
@@ -59,7 +59,10 @@ def allowed_file(filename):
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 def get_all_posts(sort_by):
-    if (sort_by == 'by_user'):
-        return Post.query.order_by(Post.user_id.desc()).all()
+    if (sort_by == 'by_users'):
+        return Post.query.order_by(Post.user_public_id.desc()).all()
     else:
         return Post.query.order_by(Post.id.desc()).all()
+
+def get_all_by_user(user_public_id):
+    return Post.query.filter_by(user_public_id=user_public_id).order_by(Post.id.desc()).all()

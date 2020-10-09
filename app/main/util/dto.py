@@ -28,5 +28,6 @@ class PostDto:
         'text': fields.String(description='text for post'),
         'images': fields.List(fields.Nested(image)),
         'public_id': fields.String(required=True, description='public id of post'),
-        'created_on': fields.String(required=True, description='date post was created')
+        'created_on': fields.String(required=True, description='date post was created'),
+        'user_public_id': fields.String(required=True, description='public id of user who created this post')
     })

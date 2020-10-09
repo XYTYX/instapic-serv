@@ -1,7 +1,7 @@
 from flask import request
 from flask_restx import Resource
 from ..util.dto import PostDto
-from ..service.post_service import new_post, get_all_posts, get_post
+from ..service.post_service import new_post, get_all_posts, get_post, get_all_by_user
 from app.main.service.auth_helper import Auth
 from app.main.util.decorator import token_required, admin_token_required
 
@@ -16,7 +16,8 @@ class NewPost(Resource):
     @api.marshal_with(_post)
     def post(self):
         user, status = Auth.get_logged_in_user(request)
-        return new_post(user_id=user['data']['user_id'], request=request)
+        print(user)
+        return new_post(public_id=user['data']['public_id'], request=request)
 
     @api.doc('gets all posts')
     @token_required
@@ -24,8 +25,17 @@ class NewPost(Resource):
     def get(self):
         sort_by = request.args.get('sort_by')
         posts = get_all_posts(sort_by);
-        print(posts[0].images[0].full_src)
         return posts
+
+@api.route('/<user_public_id>')
+@api.param('user_public_id', 'The user identifier')
+class GetPostByUser(Resource):
+    @api.doc('gets all posts by a single user')
+    @token_required
+    @api.marshal_list_with(_post)
+    def get(self, user_public_id):
+        return get_all_by_user(user_public_id)
+
 
 
 @api.route('/<public_id>')

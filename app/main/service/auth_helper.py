@@ -69,6 +69,7 @@ class Auth:
                     'status': 'success',
                     'data': {
                         'user_id': user.id,
+                        'public_id': user.public_id,
                         'email': user.email,
                         'admin': user.admin,
                         'registered_on': str(user.registered_on)
