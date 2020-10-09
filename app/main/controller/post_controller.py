@@ -27,6 +27,7 @@ class NewPost(Resource):
         posts = get_all_posts(sort_by);
         return posts
 
+#
 @api.route('/<user_public_id>')
 @api.param('user_public_id', 'The user identifier')
 class GetPostByUser(Resource):
