@@ -24,7 +24,9 @@ class NewPost(Resource):
     @api.marshal_list_with(_post)
     def get(self):
         sort_by = request.args.get('sort_by')
-        posts = get_all_posts(sort_by);
+        offset = request.args.get('offset')
+        limit = request.args.get('limit')
+        posts = get_all_posts(sort_by, offset, limit);
         return posts
 
 #
@@ -36,7 +38,6 @@ class GetPostByUser(Resource):
     @api.marshal_list_with(_post)
     def get(self, user_public_id):
         return get_all_by_user(user_public_id)
-
 
 
 @api.route('/<public_id>')

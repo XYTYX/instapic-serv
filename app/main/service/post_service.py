@@ -57,10 +57,14 @@ def allowed_file(filename):
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
-def get_all_posts(sort_by):
+def get_all_posts(sort_by, offset, limit):
     if (sort_by == 'by_users'):
         return Post.query.order_by(Post.user_public_id.desc()).all()
     else:
+        if (offset != None and limit != None):
+            offset = int(offset)
+            limit = int(limit)
+            return Post.query.order_by(Post.id.desc()).slice(offset, offset + limit).all()
         return Post.query.order_by(Post.id.desc()).all()
 
 def get_all_by_user(user_public_id):
