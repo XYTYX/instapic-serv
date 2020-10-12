@@ -6,7 +6,7 @@ from .main.controller.auth_controller import api as auth_ns
 from .main.controller.post_controller import api as post_ns
 from .main.controller.health_controller import api as health_ns
 
-blueprint = Blueprint('api', __name__, url_prefix='/api')
+blueprint = Blueprint('api', __name__, url_prefix='/api', static_folder='../instapic/build', static_url_path='/')
 
 api = Api(blueprint,
           title='FLASK RESTPLUS(RESTX) API BOILER-PLATE WITH JWT',
