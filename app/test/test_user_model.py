@@ -1,6 +1,7 @@
 import unittest
 
 import datetime
+import uuid
 
 from app.main import db
 from app.main.model.models import User
@@ -13,7 +14,8 @@ class TestUserModel(BaseTestCase):
         user = User(
             email='test@test.com',
             password='test',
-            registered_on=datetime.datetime.utcnow()
+            registered_on=datetime.datetime.utcnow(),
+            public_id=str(uuid.uuid4())
         )
         db.session.add(user)
         db.session.commit()
@@ -24,7 +26,8 @@ class TestUserModel(BaseTestCase):
         user = User(
             email='test@test.com',
             password='test',
-            registered_on=datetime.datetime.utcnow()
+            registered_on=datetime.datetime.utcnow(),
+            public_id=str(uuid.uuid4())
         )
         db.session.add(user)
         db.session.commit()

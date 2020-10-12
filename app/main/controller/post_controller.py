@@ -16,7 +16,6 @@ class NewPost(Resource):
     @api.marshal_with(_post)
     def post(self):
         user, status = Auth.get_logged_in_user(request)
-        print(user)
         return new_post(public_id=user['data']['public_id'], request=request)
 
     @api.doc('gets all posts')
