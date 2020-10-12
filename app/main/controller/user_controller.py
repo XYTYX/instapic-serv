@@ -12,7 +12,6 @@ _user = UserDto.user
 @api.route('/')
 class UserList(Resource):
     @api.doc('list of registered users')
-    @admin_token_required
     @api.marshal_list_with(_user, envelope='users')
     def get(self):
         """List all registered users"""
