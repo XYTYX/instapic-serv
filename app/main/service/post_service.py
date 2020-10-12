@@ -1,7 +1,6 @@
 import uuid
 import os
 import datetime
-from flask import current_app
 from app.main.model.models import save_changes, Post, Image
 from .upload_helper import upload_file_to_s3
 
