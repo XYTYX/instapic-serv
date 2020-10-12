@@ -12,7 +12,8 @@ app = create_app()
 app.app_context().push()
 
 @app.route('/')
-def index():
+@app.route('/<string:x>')
+def index(x = None):
     return app.send_static_file('index.html') 
 
 app.register_blueprint(blueprint)
