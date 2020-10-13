@@ -1,6 +1,18 @@
-#### FLASK RESTX BOILER-PLATE WITH JWT
+```
+$$$$$$\                       $$\                         $$\                   $$$$$$\                                
+\_$$  _|                      $$ |                        \__|                 $$  __$$\                               
+  $$ |  $$$$$$$\   $$$$$$$\ $$$$$$\    $$$$$$\   $$$$$$\  $$\  $$$$$$$\        $$ /  \__| $$$$$$\   $$$$$$\ $$\    $$\ 
+  $$ |  $$  __$$\ $$  _____|\_$$  _|   \____$$\ $$  __$$\ $$ |$$  _____|$$$$$$\\$$$$$$\  $$  __$$\ $$  __$$\\$$\  $$  |
+  $$ |  $$ |  $$ |\$$$$$$\    $$ |     $$$$$$$ |$$ /  $$ |$$ |$$ /      \______|\____$$\ $$$$$$$$ |$$ |  \__|\$$\$$  / 
+  $$ |  $$ |  $$ | \____$$\   $$ |$$\ $$  __$$ |$$ |  $$ |$$ |$$ |             $$\   $$ |$$   ____|$$ |       \$$$  /  
+$$$$$$\ $$ |  $$ |$$$$$$$  |  \$$$$  |\$$$$$$$ |$$$$$$$  |$$ |\$$$$$$$\        \$$$$$$  |\$$$$$$$\ $$ |        \$  /   
+\______|\__|  \__|\_______/    \____/  \_______|$$  ____/ \__| \_______|        \______/  \_______|\__|         \_/    
+                                                $$ |                                                                   
+                                                $$ |                                                                   
+                                                \__|                                                                   
+```
 
-### Terminal commands
+### Getting started
 Note: make sure you have `pip` and `virtualenv` installed.
 
     Initial installation: make install
@@ -20,29 +32,29 @@ Make sure to run the initial migration commands to update the database.
     > python manage.py db upgrade
 
 
-### Viewing the app ###
+### Viewing the app
 
     Open the following url on your browser to view swagger documentation
-    http://127.0.0.1:5000/
+    http://localhost:8000/api
 
+### Frontend
 
-### Using Postman ####
+    Instapic-Serv has a submodule called Instapic that serves as the frontend for this application. We serve these static files at the root of the application. In order to change 
+
+### Using Postman
 
     Authorization header is in the following format:
 
     Key: Authorization
-    Value: "token_generated_during_login"
+    Value: Bearer {token_generated_during_login}
 
-    For testing authorization, url for getting all user requires an admin token while url for getting a single
-    user by public_id requires just a regular authentication.
+### Production
 
-### Full description and guide ###
+    A production build of this app is currently running at http://serv.instapic.site/
+
+    In development, we develop against a SQLite database, but in production, we use PostgreSQL.
+
+    This app is designed to be deployed with Heroku, feel free to check out the Procfile to see how this app is run in production.
+
+### Architecturally based on this project
 https://medium.freecodecamp.org/structuring-a-flask-restplus-web-service-for-production-builds-c2ec676de563
-
-
-### Contributing
-If you want to contribute to this flask restplus boilerplate, clone the repository and just start making pull requests.
-
-```
-https://github.com/cosmic-byte/flask-restplus-boilerplate.git
-```
