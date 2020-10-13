@@ -5,12 +5,14 @@ import tempfile
 from app.main import db
 from test_auth import login_user, register_user
 from app.test.base import BaseTestCase
+from moto import mock_s3
 
 def new_post(self):
     with tempfile.NamedTemporaryFile('w+b', suffix='.png') as f:
         register_user(self)
         resp_login = login_user(self)
         content = b'foo'
+        f.name = "filename.png"
         f.write(content)
         f.seek(0)
         return self.client.post(

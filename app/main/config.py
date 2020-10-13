@@ -24,7 +24,7 @@ class TestingConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask_boilerplate_test.db')
     PRESERVE_CONTEXT_ON_EXCEPTION = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    S3_BUCKET = "test-bucket"
+    S3_BUCKET = "test-instapic-assets"
     AWS_KEY = os.environ.get("AWS_INSTAPIC_ACCESS_KEY")
     AWS_SECRET = os.environ.get("AWS_INSTAPIC_SECRET_ACCESS_KEY")
     S3_LOCATION = 'http://{}.s3.amazonaws.com/'.format(S3_BUCKET)
