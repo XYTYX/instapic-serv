@@ -33,7 +33,7 @@ class TestingConfig(Config):
 
 class ProductionConfig(Config):
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = ost.environ.get("DATABASE_URL")
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
     PRESERVE_CONTEXT_ON_EXCEPTION = False
     S3_BUCKET = "prod-instapic-assets"
     AWS_KEY = os.environ.get("AWS_INSTAPIC_ACCESS_KEY")
