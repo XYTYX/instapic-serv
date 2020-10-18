@@ -74,13 +74,19 @@ class Post(db.Model):
     """ Model for representing posts """
     __tablename__ = "posts"
 
-    #
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_public_id = db.Column(db.String(100), db.ForeignKey('users.public_id'), nullable=False)
     created_on = db.Column(db.DateTime, nullable=False)
     text = db.Column(db.String(255))
     public_id = db.Column(db.String(100), unique=True)
     images = db.relationship("Image", backref="post", lazy=True)
+
+class Like(db.Model):
+    """ Model for representing likes """
+    __tablename__ = "likes"
+    id = db.Column(db.Integer, primary_key=True, autoincredment=True)
+    post_public_id = db.relationship("Post")
+    user_public_id = db.String()
 
 
 class Image(db.Model):

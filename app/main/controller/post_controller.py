@@ -1,7 +1,7 @@
 from flask import request
 from flask_restx import Resource
 from ..util.dto import PostDto
-from ..service.post_service import new_post, get_all_posts, get_post, get_all_by_user
+from ..service.post_service import new_post, get_all_posts, get_post, get_all_by_user, like
 from app.main.service.auth_helper import Auth
 from app.main.util.decorator import token_required, admin_token_required
 
@@ -51,3 +51,21 @@ class Post(Resource):
             api.abort(404)
         else:
             return post
+
+@api.route('/like/<post_public_id>')
+@api.param('post_public_id', 'The post identifier')
+class LikePost(Resource):
+    @api.doc('likes a post')
+    @token_required
+    def post(self, post_public_id):
+        user, status = Auth.get_logged_in_user(request)
+        return like(user_public_id=user['data']['public_id'], post_public_id=post_public_id)
+
+@api.route('/unlike/<post_public_id>')
+@api.param('post_public_id', 'The post identifier')
+class UnlikePost(Resource):
+    @api.doc('unlikes a post')
+    @token_required
+    def post(self, post_public_id):
+        user, status = Auth.get_logged_in_user(request)
+        return unlike(user_public_id=user['data']['public_id'], post_public_id=post_public_id)

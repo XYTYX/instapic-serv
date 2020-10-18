@@ -69,3 +69,29 @@ def get_all_posts(sort_by, offset, limit):
 
 def get_all_by_user(user_public_id):
     return Post.query.filter_by(user_public_id=user_public_id).order_by(Post.id.desc()).all()
+
+def like(user_public_id, post_public_id):
+    exists = query.filter_by(user_public_id, post_public_id)
+    if exists:
+        return "", 400
+    like = Like(post_public_id=post_public_id, user_public_id=user_public_id)
+    save_changes(like)
+    return "", 200
+
+def unlike(user_public_id, post_public_id):
+    exists = query.filter_by(user_public_id, post_public_id)
+    if exists:
+        unlike = query.delete_by(user_public_id, post_public_id)
+        save_changes(unlike)
+        return "", 200
+    else:
+        return "", 400
+
+def like_action(user_public_id, post_public_id, action):
+    if action == 'like':
+        exists = query.filter_by(user_public_id, post_public_id)
+        if exists:
+            return "", 400
+        like = Like(post_public_id=post_public_id, user_public_id=user_public_id)
+        save_changes(like)
+        return "", 200
